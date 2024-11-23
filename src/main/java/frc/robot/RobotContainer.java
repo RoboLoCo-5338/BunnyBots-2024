@@ -80,13 +80,22 @@ public class RobotContainer {
     intakeOut.whileTrue(IntakeCommands.outake());
     intakeOut.onFalse(IntakeCommands.stopIntake());
 
-    Trigger ArmUp = new Trigger(joystick2.rightBumper());
-    ArmUp.whileTrue(ArmCommands.MoveArmUpCommand());
-    ArmUp.onFalse(ArmCommands.stopArm());
+    // Trigger ArmUp = new Trigger(joystick2.rightBumper());
+    // ArmUp.whileTrue(ArmCommands.MoveArmUpCommand());
+    // ArmUp.onFalse(ArmCommands.stopArm());
 
-    Trigger ArmDown = new Trigger(joystick2.leftBumper());
-    ArmDown.whileTrue(ArmCommands.MoveArmDownCommand());
-    ArmDown.onFalse(ArmCommands.stopArm());
+    // Trigger ArmDown = new Trigger(joystick2.leftBumper());
+    // ArmDown.whileTrue(ArmCommands.MoveArmDownCommand());
+    // ArmDown.onFalse(ArmCommands.stopArm());
+    
+    Trigger moveArmUp = new Trigger(() -> joystick2.getLeftY()> 0.1);
+    moveArmUp.whileTrue(ArmCommands.MoveArmUpCommand());
+    Trigger moveArmDown = new Trigger(() -> joystick2.getLeftY()< -0.1);
+    moveArmDown.whileTrue(ArmCommands.MoveArmDownCommand());
+    Trigger stopArm = new Trigger(() -> Math.abs(joystick2.getLeftY())<0.1);
+    stopArm.whileTrue(ArmCommands.stopArm());
+    // Trigger presetArm = new Trigger(() -> joystick2.getLeftY()== 0.0);
+    // presetArm.whileTrue(ArmCommands.setArmCommand(0));
   } 
 
   public RobotContainer() {

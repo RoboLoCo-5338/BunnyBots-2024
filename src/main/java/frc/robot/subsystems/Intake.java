@@ -16,16 +16,16 @@ public class Intake extends SubsystemBase {
 
     public Intake() {
         intakeMotor = new TalonFX(2);
-        indexMotor = new TalonFX(3);
+        // indexMotor = new TalonFX(3); indexer doesn't exist
     }
 
-    public void indexForward() {
-        indexMotor.set(0.3);
-    }
+    // public void indexForward() {
+    //     indexMotor.set(0.3);
+    // }
 
-    public void indexReverse() {
-        indexMotor.set(-0.3);
-    }
+    // public void indexReverse() {
+    //     indexMotor.set(-0.3);
+    // }
 
     public void intake() {
         intakeMotor.set(0.5);
@@ -34,22 +34,22 @@ public class Intake extends SubsystemBase {
     public void outake() {
         intakeMotor.set(-0.5);
     }
-    public void stopIndex() {
-        indexMotor.set(0);
-    }
+    // public void stopIndex() {
+    //     indexMotor.set(0);
+    // }
     public void stopIntake() {
         intakeMotor.set(0);
     }
-    public void stopIntakeMotors() {
-        stopIntake();
-        stopIndex();
-    }
-    public void intakeIndexForward(){
-        intakeMotor.set(0.5);
-        indexMotor.set(0.3);
-    }
-    public void outakeIndexReverse(){
-        intakeMotor.set(-0.5);
-        indexMotor.set(-0.3);
-    }
+    // public void stopIntakeMotors() {
+    //     stopIntake();
+    //     stopIndex();
+    // }
+    // public void intakeIndexForward(){
+    //     intakeMotor.set(0.5);
+    //     indexMotor.set(0.3);
+    // }
+    // public void outakeIndexReverse(){
+    //     intakeMotor.set(-0.5);
+    //     indexMotor.set(-0.3);
+    // }
 }
