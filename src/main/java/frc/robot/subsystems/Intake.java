@@ -15,7 +15,7 @@ public class Intake extends SubsystemBase {
     private static TalonFX indexMotor;
 
     public Intake() {
-        intakeMotor = new TalonFX(2);
+        intakeMotor = new TalonFX(19, "Canivore1");
         // indexMotor = new TalonFX(3); indexer doesn't exist
     }
 
@@ -28,11 +28,11 @@ public class Intake extends SubsystemBase {
     // }
 
     public void intake() {
-        intakeMotor.set(-0.5);
+        intakeMotor.set(-0.1);
     }
 
     public void outake() {
-        intakeMotor.set(0.5);
+        intakeMotor.set(0.1);
     }
     // public void stopIndex() {
     //     indexMotor.set(0);
