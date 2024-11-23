@@ -28,11 +28,11 @@ public class Intake extends SubsystemBase {
     // }
 
     public void intake() {
-        intakeMotor.set(0.5);
+        intakeMotor.set(-0.5);
     }
 
     public void outake() {
-        intakeMotor.set(-0.5);
+        intakeMotor.set(0.5);
     }
     // public void stopIndex() {
     //     indexMotor.set(0);
