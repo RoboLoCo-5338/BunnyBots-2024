@@ -27,4 +27,8 @@ public class ArmSystem extends SubsystemBase{
         this.armMotor.set(0);
     }
 
+    public void setAngle(double angle) {
+        this.armMotor.set(angle);
+    }
+
 }
