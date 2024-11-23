@@ -19,9 +19,11 @@ import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.subsystems.ArmSystem;
+import frc.robot.subsystems.Intake;
 
 public class RobotContainer {
   public static ArmSystem m_arm = new ArmSystem();
+  public static Intake intake = new Intake();
   private double MaxSpeed = TunerConstants.kSpeedAt12VoltsMps; // kSpeedAt12VoltsMps desired top speed
   //originally 1.5  radians per second
   private double MaxAngularRate = 0.5 * Math.PI; // 3/4 of a rotation per second max angular velocity
