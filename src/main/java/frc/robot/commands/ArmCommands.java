@@ -7,10 +7,6 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import frc.robot.RobotContainer;
 
 public class ArmCommands {
-    public static Command MoveArmUpCommand = new RunCommand(
-        ()->RobotContainer.m_arm.moveUp(),RobotContainer.m_arm
-    );
-
     public static Command MoveArmUpCommand() {
         return new RunCommand(
             ()->RobotContainer.m_arm.moveUp(),

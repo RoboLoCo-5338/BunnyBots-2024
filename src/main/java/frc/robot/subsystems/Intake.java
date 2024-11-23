@@ -46,10 +46,10 @@ public class Intake extends SubsystemBase {
     }
     public void intakeIndexForward(){
         intakeMotor.set(0.5);
-        indexMotor.set(0.5);
+        indexMotor.set(0.3);
     }
     public void outakeIndexReverse(){
         intakeMotor.set(-0.5);
-        indexMotor.set(-0.5);
+        indexMotor.set(-0.3);
     }
 }
