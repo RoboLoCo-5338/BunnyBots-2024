@@ -32,7 +32,7 @@ public class Intake extends SubsystemBase {
     }
 
     public void outake() {
-        intakeMotor.set(0.1);
+        intakeMotor.set(0.4);
     }
     // public void stopIndex() {
     //     indexMotor.set(0);

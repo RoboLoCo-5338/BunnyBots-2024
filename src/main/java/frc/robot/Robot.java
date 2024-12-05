@@ -4,23 +4,38 @@
 
 package frc.robot;
 
+import com.pathplanner.lib.commands.PathfindingCommand;
+
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.ArmCommands;
+import frc.robot.commands.IntakeCommands;
 
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
 
+
   @Override
   public void robotInit() {
     m_robotContainer = new RobotContainer();
+    PathfindingCommand.warmupCommand().schedule();
   }
 
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run(); 
+
+    SmartDashboard.putNumber("Top Limit Switch", m_robotContainer.m_arm.armMotor.getForwardLimit().getValueAsDouble());
+    SmartDashboard.putNumber("Arm Position", m_robotContainer.m_arm.getPosition());
+    SmartDashboard.putNumber("Test", System.currentTimeMillis());
+
+    // if(m_robotContainer.armLimitSwitch.get()){
+    //   m_robotContainer.m_arm.changeOffset();
+    // } 
   }
 
   @Override
@@ -34,7 +49,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+   // m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+   m_autonomousCommand = ArmCommands.movearmPosition(90);
 
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
