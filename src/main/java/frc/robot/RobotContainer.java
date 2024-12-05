@@ -10,13 +10,20 @@ import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;
+import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.NamedCommands;
+import com.pathplanner.lib.path.PathPlannerPath;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
+<<<<<<< HEAD
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+=======
+import edu.wpi.first.wpilibj.DriverStation;
+>>>>>>> e6b2b321b3c3ba784e72a0acef123d8d32bf4b97
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -129,6 +136,7 @@ public class RobotContainer {
   } 
 
   public RobotContainer() {
+    NamedCommands.registerCommand("StackBucket", ArmCommands.stackBucket());
     configureBindings();
     // NamedCommands.registerCommand("StackBucket", AutoCommands.stackBucket());
     // NamedCommands.registerCommand("ScoreBucket", AutoCommands.scoreBucket());
@@ -138,7 +146,30 @@ public class RobotContainer {
     SmartDashboard.putData(autoChooser);
   }
 
+<<<<<<< HEAD
   public Command getAutonomousCommand() {
     return autoChooser.getSelected();
+=======
+   public Command getAutonomousCommand() {
+    try{
+        // Load the path you want to follow using its name in the GUI
+        PathPlannerPath path;
+        var alliance = DriverStation.getAlliance();
+        if (alliance.isPresent() && alliance.get() == DriverStation.Alliance.Blue) {
+          path = PathPlannerPath.fromPathFile("Blue Preloaded Stack");
+
+        } else {
+          path = PathPlannerPath.fromPathFile("Red Preloaded Stack");
+        }
+          
+        
+        // Create a path following command using AutoBuilder. This will also trigger event markers.
+        
+        return AutoBuilder.followPath(path);
+    } catch (Exception e) {
+        DriverStation.reportError("Big oops: " + e.getMessage(), e.getStackTrace());
+        return Commands.none();
+    }
+>>>>>>> e6b2b321b3c3ba784e72a0acef123d8d32bf4b97
   }
 }
