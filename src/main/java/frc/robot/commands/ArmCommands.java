@@ -78,19 +78,6 @@ public class ArmCommands {
         RobotContainer.m_arm);
     }
 
-    public static Command runIntakeForwardTimed(long time){
-    return new FunctionalCommand(() -> {
-      RobotContainer.intake.stopIntake();
-      startTime = System.currentTimeMillis();
-    },() -> RobotContainer.intake.intake(),interrupted -> RobotContainer.intake.stopIntake(), () -> System.currentTimeMillis()-time>startTime, RobotContainer.intake);
-  }
 
-
-  public static Command runIntakeBackwardTimed(long time){
-    return new FunctionalCommand(() -> {
-      RobotContainer.intake.stopIntake();
-      startTime = System.currentTimeMillis();
-    },() -> RobotContainer.intake.outake(),interrupted -> RobotContainer.intake.stopIntake(), () -> System.currentTimeMillis()-time>startTime, RobotContainer.intake);
-  }
   
 }

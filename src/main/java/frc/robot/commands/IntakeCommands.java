@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.RobotContainer;
 
 public class IntakeCommands {
+    private static double startTime;
     // public static Command indexForward() { indexer doesn't exist
     //     return new InstantCommand(
     //       () -> RobotContainer.intake.indexForward(),
@@ -41,24 +42,21 @@ public class IntakeCommands {
 			RobotContainer.intake
 		);
     }
-    // public static Command stopIntakeMotors() {
-    //     return new InstantCommand(
-    //       () -> RobotContainer.intake.stopIntakeMotors(),
-    //       RobotContainer.intake
-    //     );
-    // }
-    // public static Command intakeIndexForward() {//creates the intake + forward index command
-    //     return new InstantCommand(
-	// 		() -> RobotContainer.intake.intakeIndexForward(),
-	// 		RobotContainer.intake
-	// 	);
-    // }  
-    // public static Command outakeIndexReverse() {//creates the outake + reverse index command
-    //     return new InstantCommand(
-	// 		() -> RobotContainer.intake.outakeIndexReverse(),
-	// 		RobotContainer.intake
-	// 	);
-    // }
+ 
+    public static Command runIntakeForwardTimed(long time){
+        return new FunctionalCommand(() -> {
+          RobotContainer.intake.stopIntake();
+          startTime = System.currentTimeMillis();
+        },() -> RobotContainer.intake.intake(),interrupted -> RobotContainer.intake.stopIntake(), () -> System.currentTimeMillis()-time>startTime, RobotContainer.intake);
+      }
+    
+    
+      public static Command runIntakeBackwardTimed(long time){
+        return new FunctionalCommand(() -> {
+          RobotContainer.intake.stopIntake();
+          startTime = System.currentTimeMillis();
+        },() -> RobotContainer.intake.outake(),interrupted -> RobotContainer.intake.stopIntake(), () -> System.currentTimeMillis()-time>startTime, RobotContainer.intake);
+      }
 
     
 }

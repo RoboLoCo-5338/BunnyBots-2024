@@ -32,8 +32,9 @@ public class ArmSystem extends SubsystemBase{
         
         
         Slot0Configs slot0 = new Slot0Configs();
-        slot0.kP = 0.07;
-        slot0.kI = 0.1;
+        //CHANGE RIGHT AWAY
+        slot0.kP = 0.01;
+        slot0.kI = 0.00;
         config.CurrentLimits.SupplyCurrentLimitEnable=true;
         config.CurrentLimits.SupplyCurrentLimit=20;
         config.withHardwareLimitSwitch(limitSwitchConfigs);
@@ -41,21 +42,24 @@ public class ArmSystem extends SubsystemBase{
         armMotor.getConfigurator().apply(config);
     
     }
+
+    //CHANGE ALL THESE VALUES 
+    //todo
     
     public void moveUp() {
-        this.armMotor.set(-0.5*reverse);
+        this.armMotor.set(-0.3*reverse);
     }
 
     public void moveDown() {
-        this.armMotor.set(0.5*reverse);
+        this.armMotor.set(0.3*reverse);
     }
 
     public void moveUpSlow() {
-        this.armMotor.set(-0.2*reverse);
+        this.armMotor.set(-0.1*reverse);
     }
 
     public void moveDownSlow(){
-        this.armMotor.set(0.2*reverse);
+        this.armMotor.set(0.1*reverse);
     }
 
     public void changeOffset(){
@@ -84,8 +88,9 @@ public class ArmSystem extends SubsystemBase{
         return this.armMotor.getVelocity().getValue();
     }
 
+    //CHANGE THIS VELOCITY TOO
     public void setTargetPosition(double targetPosition) {
-        PositionDutyCycle positionControl = new PositionDutyCycle(targetPosition+offset, 0.5, false, 0.5, 0, false, false, false);
+        PositionDutyCycle positionControl = new PositionDutyCycle(targetPosition+offset, 0.2, false, 0.5, 0, false, false, false);
         armMotor.setControl(positionControl); // Position control
     }
 
