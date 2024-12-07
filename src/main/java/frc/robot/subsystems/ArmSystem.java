@@ -35,6 +35,7 @@ public class ArmSystem extends SubsystemBase{
         //CHANGE RIGHT AWAY
         slot0.kP = 0.01;
         slot0.kI = 0.00;
+        //CHANGE THESE, SEE IF THEY SOLVE THE ISSUE
         config.CurrentLimits.SupplyCurrentLimitEnable=true;
         config.CurrentLimits.SupplyCurrentLimit=20;
         config.withHardwareLimitSwitch(limitSwitchConfigs);
@@ -43,29 +44,30 @@ public class ArmSystem extends SubsystemBase{
     
     }
 
-    //CHANGE ALL THESE VALUES 
+    //VALUES HAVE BEEN SPED UP AGAIN
     //todo
     
     public void moveUp() {
-        this.armMotor.set(-0.3*reverse);
+        this.armMotor.set(-0.5*reverse);
     }
 
     public void moveDown() {
-        this.armMotor.set(0.3*reverse);
+        this.armMotor.set(0.5*reverse);
     }
 
     public void moveUpSlow() {
-        this.armMotor.set(-0.1*reverse);
+        this.armMotor.set(-0.2*reverse);
     }
 
     public void moveDownSlow(){
-        this.armMotor.set(0.1*reverse);
+        this.armMotor.set(0.2*reverse);
     }
 
     public void changeOffset(){
         offset=-armMotor.getPosition().getValueAsDouble(); 
     }
     public void stopMotor() {
+        //this value should STAY at 55
         if(armMotor.getPosition().getValueAsDouble()>55){
             reverse=-1;
         }else{
@@ -90,7 +92,9 @@ public class ArmSystem extends SubsystemBase{
 
     //CHANGE THIS VELOCITY TOO
     public void setTargetPosition(double targetPosition) {
-        PositionDutyCycle positionControl = new PositionDutyCycle(targetPosition+offset, 0.2, false, 0.5, 0, false, false, false);
+        //Note to self, changed velocity to 0
+        //check what ovverid brake neutral does
+        PositionDutyCycle positionControl = new PositionDutyCycle(targetPosition+offset, 0.0, false, 0.5, 0, false, false, false);
         armMotor.setControl(positionControl); // Position control
     }
 

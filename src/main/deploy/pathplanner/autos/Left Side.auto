@@ -37,22 +37,15 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "named",
           "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "Ground Arm"
-                }
-              },
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Left Start to B1"
-                }
-              }
-            ]
+            "name": "Ground Arm"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Left Start to B1"
           }
         },
         {
@@ -62,22 +55,15 @@
           }
         },
         {
-          "type": "sequential",
+          "type": "named",
           "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "B1 to Score"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "Score Arm"
-                }
-              }
-            ]
+            "name": "Score Arm"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "B1 to Score"
           }
         },
         {
