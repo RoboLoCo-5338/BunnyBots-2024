@@ -6,6 +6,7 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.PositionDutyCycle;
+import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.controls.VelocityDutyCycle;
 
 import edu.wpi.first.wpilibj2.command.Command;
@@ -96,6 +97,9 @@ public class ArmSystem extends SubsystemBase{
         //check what ovverid brake neutral does
         PositionDutyCycle positionControl = new PositionDutyCycle(targetPosition+offset, 0.0, false, 0.5, 0, false, false, false);
         armMotor.setControl(positionControl); // Position control
+        //talon fx documentation code
+        // PositionVoltage m_request = new PositionVoltage(0).withSlot(0);
+        // armMotor.setControl(m_request.withPosition(targetPosition));
     }
 
     public void setTargetVelocity(double targetVelocity) {
